@@ -119,12 +119,12 @@ df_dam <- df[, c(15:32, 85)] # takes only the columns needed for the chart
     # Dataframe for the variable "Impact on respondent"
 df_dam_ind <- aggregate(cbind(dam_ep, dam_fl, dam_dr, dam_wf, 
                               dam_ea, dam_ta, dam_dv, dam_ec, dam_cc) ~ area2, 
-                        data = df_dam, mean, na.rm = TRUE) # calculates the mean for each of the variables, per country
+                        data = df_dam, mean, na.rm = TRUE) # calculates the mean for each of the variables listed in cbind, per country
     
     # Dataframe for the variable "Impact on others in the country"
 df_dam_oth <- aggregate(cbind(dam_oth_ep, dam_oth_fl, dam_oth_dr, dam_oth_wf,
                               dam_oth_ea, dam_oth_ta, dam_oth_dv, dam_oth_ec, dam_oth_cc) ~ area2, 
-                        data = df_dam, mean, na.rm = TRUE) # calculates the mean for each of the variables, per country
+                        data = df_dam, mean, na.rm = TRUE) # calculates the mean for each of the variables listed in cbind, per country
 
 colnames(df_dam_ind) <- c("area", "Epidemics", "Floods", "Drought", "Wildfires", "Earthquakes",
                           "Terror attacks", "Domestic violence", "Economic crises", "Climate Change")
@@ -132,7 +132,7 @@ colnames(df_dam_oth) <- c("area", "Epidemics", "Floods", "Drought", "Wildfires",
                           "Terror attacks", "Domestic violence", "Economic crises", "Climate Change")
 
     # Create dataframe for Italy --------
-    df_dam_ita <- rbind(df_dam_ind[1,], df_dam_oth[1,]) # puts together the first rows of the above datasets (i.e. those referring to Italy)
+    df_dam_ita <- rbind(df_dam_ind[1,], df_dam_oth[1,]) # puts together the first rows of the above dataframes (i.e. those referring to Italy)
     df_dam_ita <- df_dam_ita[,2:10]
     rownames(df_dam_ita) <- c("on the respondent", "on others in the country")
     colnames(df_dam_ita) <- c("Epidemics", "Floods", "Drought", "Wildfires", "Earthquakes",
@@ -141,12 +141,12 @@ colnames(df_dam_oth) <- c("area", "Epidemics", "Floods", "Drought", "Wildfires",
     
     
     # Create dataframe for Sweden ---------
-    df_dam_swe <- rbind(df_dam_ind[2,], df_dam_oth[2,]) # puts together the second rows of the above datasets (i.e. those referring to Sweden)
+    df_dam_swe <- rbind(df_dam_ind[2,], df_dam_oth[2,]) # puts together the second rows of the above dataframes (i.e. those referring to Sweden)
     df_dam_swe <- df_dam_swe[,2:10]
     rownames(df_dam_swe) <- c("on the respondent", "on others in the country")
     colnames(df_dam_swe) <- c("Epidemics", "Floods", "Drought", "Wildfires", "Earthquakes",
                               "Terror attacks", "Domestic violence", "Economic crises", "Climate Change")
-    df_dam_swe <- rbind(rep(5,9) , rep(1,9) , df_dam_swe) # adds rows for the successful creation of radarcharts
+    df_dam_swe <- rbind(rep(5,9) , rep(1,9) , df_dam_swe) # adds rows for the successful creation of radar charts
     
     
     # Create the radar charts ------------
